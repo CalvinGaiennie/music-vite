@@ -1,12 +1,12 @@
 import AppNav from "../components/AppNav";
-import Settings from "../components/Settings";
+import FretboardSettings from "../components/FretboardSettings";
 
 function FretboardSimulator() {
   return (
     <div>
       <AppNav />
       <div className="flex">
-        <Settings />
+        <FretboardSettings />
         <h1>Fretboard Simulator</h1>
       </div>
     </div>

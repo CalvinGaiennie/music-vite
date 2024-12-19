@@ -1,13 +1,18 @@
 import AppNav from "../components/AppNav";
-import Settings from "../components/Settings";
+import MetronomeSettings from "../components/MetronomeSettings";
 
 function Metronome() {
   return (
     <div>
       <AppNav />
       <div className="flex">
-        <Settings />
-        <h1>Metronome</h1>
+        <MetronomeSettings />
+        <div>
+          <h1>Metronome</h1>
+        </div>
+        <div className="rudimentContainer">
+          <h1>Skip to Rudiment</h1>
+        </div>
       </div>
     </div>
   );
