@@ -1,0 +1,16 @@
+:root {
+  --background-color: white;
+}
+
+body {
+  padding: 0;
+  margin: 1rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.element {
+  margin: 20px;
+}

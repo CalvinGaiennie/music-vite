@@ -6,10 +6,13 @@ function AppNav() {
     <nav className={styles.nav}>
       <ul>
         <li>
-          <NavLink to="fretboard-simulator">Fretboard Simulator</NavLink>
+          <NavLink to="/fretboard-simulator">Fretboard Simulator</NavLink>
         </li>
         <li>
-          <NavLink to="metronome">Metronome</NavLink>
+          <NavLink to="/">Ear Trainer</NavLink>
+        </li>
+        <li>
+          <NavLink to="/metronome">Metronome</NavLink>
         </li>
       </ul>
     </nav>

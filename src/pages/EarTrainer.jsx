@@ -1,10 +1,14 @@
 import AppNav from "../components/AppNav";
+import Settings from "../components/Settings";
 
 function EarTrainer() {
   return (
     <div>
       <AppNav />
-      <p>ear</p>
+      <div className="flex">
+        <Settings />
+        <h1>Ear Trainer</h1>
+      </div>
     </div>
   );
 }

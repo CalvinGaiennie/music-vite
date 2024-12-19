@@ -6,7 +6,7 @@ import Metronome from "./pages/Metronome";
 
 function App() {
   return (
-    <div>
+    <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<EarTrainer />} />
@@ -14,7 +14,7 @@ function App() {
           <Route path="/metronome" element={<Metronome />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 
