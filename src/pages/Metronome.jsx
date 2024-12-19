@@ -8,10 +8,11 @@ function Metronome() {
       <div className="flex">
         <MetronomeSettings />
         <div>
-          <h1>Metronome</h1>
-        </div>
-        <div className="rudimentContainer">
-          <h1>Skip to Rudiment</h1>
+          <h1>Stick Control Workout</h1>
+          <img src="../Assets/StickControlImages/staff.png" width="300px" />
+          <p id="rudimentText"></p>
+          <div id="imgDiv"></div>
+          <div id="measureNumberDiv"></div>
         </div>
       </div>
     </div>

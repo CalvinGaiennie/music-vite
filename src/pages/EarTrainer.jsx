@@ -1,5 +1,6 @@
 import AppNav from "../components/AppNav";
 import EarTrainerSettings from "../components/EarTrainerSettings";
+import SongPlayer from "../components/SongPlayer";
 
 function EarTrainer() {
   return (
@@ -7,7 +8,10 @@ function EarTrainer() {
       <AppNav />
       <div className="flex">
         <EarTrainerSettings />
-        <h1>Ear Trainer</h1>
+        <div>
+          <h1>Ear Trainer</h1>
+          <SongPlayer />
+        </div>
       </div>
     </div>
   );
