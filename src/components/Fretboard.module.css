@@ -1,17 +1,22 @@
-.fretboard {
-  width: 60vw;
-  background-color: brown;
-  margin: 0px;
-  padding: 0px;
+.nut {
+  width: 5px;
+  height: 80px;
+  background-color: black;
+  border: 1px solid black;
 }
-.string {
-  display: flex;
+
+.outerString {
+  background-color: brown;
   height: 20px;
+}
+
+.innerString {
+  display: flex;
   height: 100%;
   width: 100%;
-  margin-top: 30px;
   background-color: grey;
 }
+
 .fret {
   width: 30px;
   border: 1px solid black;
@@ -34,4 +39,9 @@
 }
 :global(#string-6) {
   height: 10px;
+}
+
+.active {
+  background-color: white;
+  color: white;
 }
