@@ -24,6 +24,12 @@ function Fretboard() {
   function unLight(id) {
     document.getElementById(id).classList.remove(styles.active);
   }
+
+  function getNoteAtFret(stringNote, fretNumber) {
+    const startIndex = notes.findIndex((note) => note === stringNote);
+    return notes[(startIndex + fretNumber + 1) % 12];
+  }
+
   return (
     <div>
       <h1>Fretboard Simulator</h1>
@@ -39,7 +45,8 @@ function Fretboard() {
                   className={styles.fret}
                   onMouseEnter={() => light(`fret-${j}-string-${i + 1}`)}
                   onMouseLeave={() => unLight(`fret-${j}-string-${i + 1}`)}
-                  data-noteName={notes[j]}
+                  // data-noteName={notes[j]}
+                  data-noteName={getNoteAtFret(stringNames[i], j)}
                   data-stringNoteName={stringNames[i]}
                 >
                   <div

@@ -1,5 +1,6 @@
 function SongPlayer() {
   const song = "/Assets/Songs/ET_1_Simple_Man.mp3";
+
   return (
     <div>
       <h2>Song Player</h2>

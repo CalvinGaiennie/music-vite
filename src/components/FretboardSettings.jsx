@@ -26,6 +26,7 @@ function EarTrainerSettings() {
       </select>
       <h3>Select a Scale</h3>
       <select>
+        <option value="note">Note</option>
         <option value="major">Major</option>
         <option value="minor">Minor</option>
         <option value="major-pentatonic">Major Pentatonic</option>
