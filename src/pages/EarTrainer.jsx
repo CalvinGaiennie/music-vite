@@ -7,7 +7,7 @@ function EarTrainer() {
   const [song, setSong] = useState("/Assets/Songs/ET_1_Simple_Man.mp3");
   const [instrument, setInstrument] = useState("Guitar");
   const [difficulty, setDifficulty] = useState("Guitar-simple-melody");
-
+  const [difficultyNumber, setDifficultyNumber] = useState(0);
   const handleDifficultyChange = (e) => {
     setDifficulty(e.target.value);
   };
@@ -202,6 +202,10 @@ function EarTrainer() {
     ],
   };
 
+  useEffect(() => {
+    setDifficultyNumber(songList[difficulty].length);
+  }, [difficulty]);
+
   return (
     <div>
       <AppNav />
@@ -220,6 +224,7 @@ function EarTrainer() {
             setSong={setSong}
             songList={songList}
             difficulty={difficulty}
+            difficultyNumber={difficultyNumber}
           />
         </div>
       </div>

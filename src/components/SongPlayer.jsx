@@ -1,4 +1,4 @@
-function SongPlayer({ setSong, song, songList, difficulty }) {
+function SongPlayer({ setSong, song, songList, difficulty, difficultyNumber }) {
   const playRandomSong = () => {
     const randomIndex = Math.floor(Math.random() * songList[difficulty].length);
     // const newSong = songs[randomIndex];
@@ -22,6 +22,7 @@ function SongPlayer({ setSong, song, songList, difficulty }) {
       </audio>
       <br />
       <button onClick={playRandomSong}>Play Random Song</button>
+      <p>Number of Songs in this Bank: {difficultyNumber}</p>
       <br />
       <button>Get a Tip</button>
       <br />
