@@ -42,24 +42,3 @@ function EarTrainerSettings({
 }
 
 export default EarTrainerSettings;
-
-{
-  /*
-  ET_Guitar_1415G.mp3
-  ET_Guitar_1465G.mp3
-  ET_Guitar_1524G.mp3
-  ET_Guitar_1645G.mp3
-  ET_Guitar_5411G.mp3
-  ET_Guitar_Blue_Chorus.mp3
-  
-  ET_Guitar_Feelin_Good_Again.mp3
-  ET_Guitar_Good_Lord_Lorrie_Verse.mp3
-  ET_Guitar_Hurt.mp3
-  ET_Guitar_Jersey_Giant.mp3
-  ET_Guitar_My_Heros_Have_Always_Been_Cowboys.mp3
-  
-  ET_Guitar_Simple_Man.mp3
-  
-  ET_Guitar_Summertime_Blues_Verse.mp3
-  */
-}

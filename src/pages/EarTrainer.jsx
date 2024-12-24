@@ -18,6 +18,7 @@ function EarTrainer() {
         <option value="Guitar-simple-melody">Simple Melody</option>
         <option value="Guitar-complex-melody">Complex Melody</option>
         <option value="Guitar-easy-only-key-g">Easy Only Key G</option>
+        <option value="Guitar-easy">Easy </option>
         <option value="Guitar-easy-with-a-capo">Easy With a Capo</option>
         <option value="Guitar-intermediate">Intermediate</option>
         <option value="Guitar-full-songs">Full Songs</option>
@@ -37,6 +38,9 @@ function EarTrainer() {
           of G.
         </p>
         <p>
+          <strong>Easy:</strong> Simple chord progression in easy guitar keys.
+        </p>
+        <p>
           <strong>Easy With a Capo:</strong> Simple chord progression using the
           chords shapes of the key of G but with a capo. So could actually be in
           any key.
@@ -45,7 +49,9 @@ function EarTrainer() {
           <strong>Intermediate:</strong> Any key, any shapes.
         </p>
         <p>
-          <strong>Full Songs:</strong>
+          <strong>Full Songs: </strong>
+          Multi part songs with complex progressions, and extended chords played
+          in varying styles and genres.
         </p>
         <p>
           <strong>Patrick:</strong>
@@ -189,10 +195,36 @@ function EarTrainer() {
       "/Assets/Songs/ET_MO_A_ElPaso.mp3",
       "/Assets/Songs/ET_MO_I_GOTTV1.mp3",
     ],
+    "Guitar-complex-melody": [],
+    "Guitar-easy-only-key-g": [
+      "/Assets/Songs/ET_Guitar_1415G.mp3",
+      "/Assets/Songs/ET_Guitar_1465G.mp3",
+      "/Assets/Songs/ET_Guitar_1524G.mp3",
+      "/Assets/Songs/ET_Guitar_1645G.mp3",
+      "/Assets/Songs/ET_Guitar_5411G.mp3",
+    ],
+    "Guitar-easy": [
+      "/Assets/Songs/ET_Guitar_Blue_Chorus.mp3",
+      "/Assets/Songs/ET_Guitar_Simple_Man.mp3",
+      "/Assets/Songs/ET_Guitar_Hurt.mp3",
+    ],
+    "Guitar-easy-with-a-capo": [
+      "/Assets/Songs/ET_Guitar_Jersey_Giant.mp3",
+      "/Assets/Songs/ET_Guitar_Summertime_Blues_Verse.mp3",
+    ],
+    "Guitar-intermediate": [
+      "/Assets/Songs/ET_Guitar_Feelin_Good_Again.mp3",
+      "/Assets/Songs/ET_Guitar_My_Heros_Have_Always_Been_Cowboys.mp3",
+    ],
     "Guitar-full-songs": [
       "/Assets/Songs/ET_Guitar_Cavalry.mp3",
       "/Assets/Songs/ET_Guitar_Nobody_Knows_You_When_You're_Down_And_Out.mp3",
       "/Assets/Songs/ET_Guitar_Something.mp3",
+    ],
+    "Guitar-patrick": [
+      "/Assets/Songs/Weird/Last_Christmas.m4a",
+      "/Assets/Songs/Weird/Mistletoe_ftJazzy_G.m4a",
+      "/Assets/Songs/Weird/Rockin_Around_The_Christmas_Tree.m4a",
     ],
     "Bass-simple-melody": [
       "/Assets/Songs/ET_BO_A_12BB.mp3",
@@ -200,6 +232,13 @@ function EarTrainer() {
       "/Assets/Songs/ET_BO_B_G_1415.mp3",
       "/Assets/Songs/ET_BO_I_A_1415.mp3",
     ],
+    "Bass-complex-bassline": [],
+    "Piano-simple-melody": [],
+    "Piano-complex-melody": [],
+    "Piano-easy-only-key-c": [],
+    "Piano-easy-all-keys": [],
+    "Piano-intermediate": [],
+    "Piano-full-songs": [],
   };
 
   useEffect(() => {
@@ -233,3 +272,10 @@ function EarTrainer() {
 }
 
 export default EarTrainer;
+
+{
+  /*
+  ET_Guitar_Good_Lord_Lorrie_Verse.mp3
+  
+  */
+}
