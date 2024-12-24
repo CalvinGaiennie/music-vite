@@ -8,6 +8,8 @@ function EarTrainer() {
   const [instrument, setInstrument] = useState("Guitar");
   const [difficulty, setDifficulty] = useState("Guitar-simple-melody");
   const [difficultyNumber, setDifficultyNumber] = useState(0);
+  const [tip, setTip] = useState("");
+
   const handleDifficultyChange = (e) => {
     setDifficulty(e.target.value);
   };
@@ -192,45 +194,189 @@ function EarTrainer() {
 
   const songList = {
     "Guitar-simple-melody": [
-      "/Assets/Songs/ET_MO_A_ElPaso.mp3",
-      "/Assets/Songs/ET_MO_I_GOTTV1.mp3",
+      {
+        Path: "/Assets/Songs/ET_MO_A_ElPaso.mp3",
+        Title: "El Paso",
+        Tip: "test",
+        Key: "",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_MO_I_GOTTV1.mp3",
+        Title: "GOTTV1",
+        Tip: "test",
+        Key: "",
+        Chords: "",
+      },
     ],
     "Guitar-complex-melody": [],
     "Guitar-easy-only-key-g": [
-      "/Assets/Songs/ET_Guitar_1415G.mp3",
-      "/Assets/Songs/ET_Guitar_1465G.mp3",
-      "/Assets/Songs/ET_Guitar_1524G.mp3",
-      "/Assets/Songs/ET_Guitar_1645G.mp3",
-      "/Assets/Songs/ET_Guitar_5411G.mp3",
+      {
+        Path: "/Assets/Songs/ET_Guitar_1415G.mp3",
+        Title: "1415G",
+        Tip: "",
+        Key: "G",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_Guitar_1465G.mp3",
+        Title: "1465G",
+        Tip: "",
+        Key: "G",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_Guitar_1524G.mp3",
+        Title: "1524G",
+        Tip: "",
+        Key: "G",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_Guitar_1645G.mp3",
+        Title: "1645G",
+        Tip: "",
+        Key: "G",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_Guitar_5411G.mp3",
+        Title: "5411G",
+        Tip: "",
+        Key: "G",
+        Chords: "",
+      },
     ],
     "Guitar-easy": [
-      "/Assets/Songs/ET_Guitar_Blue_Chorus.mp3",
-      "/Assets/Songs/ET_Guitar_Simple_Man.mp3",
-      "/Assets/Songs/ET_Guitar_Hurt.mp3",
+      {
+        Path: "/Assets/Songs/ET_Guitar_Blue_Chorus.mp3",
+        Title: "Blue Chorus",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_Guitar_Simple_Man.mp3",
+        Title: "Simple Man",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_Guitar_Hurt.mp3",
+        Title: "Hurt",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
     ],
     "Guitar-easy-with-a-capo": [
-      "/Assets/Songs/ET_Guitar_Jersey_Giant.mp3",
-      "/Assets/Songs/ET_Guitar_Summertime_Blues_Verse.mp3",
+      {
+        Path: "/Assets/Songs/ET_Guitar_Jersey_Giant.mp3",
+        Title: "Jersey Giant",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_Guitar_Summertime_Blues_Verse.mp3",
+        Title: "Summertime Blues Verse",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
     ],
     "Guitar-intermediate": [
-      "/Assets/Songs/ET_Guitar_Feelin_Good_Again.mp3",
-      "/Assets/Songs/ET_Guitar_My_Heros_Have_Always_Been_Cowboys.mp3",
+      {
+        Path: "/Assets/Songs/ET_Guitar_Feelin_Good_Again.mp3",
+        Title: "Feelin Good Again",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_Guitar_My_Heros_Have_Always_Been_Cowboys.mp3",
+        Title: "My Heros Have Always Been Cowboys",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
     ],
     "Guitar-full-songs": [
-      "/Assets/Songs/ET_Guitar_Cavalry.mp3",
-      "/Assets/Songs/ET_Guitar_Nobody_Knows_You_When_You're_Down_And_Out.mp3",
-      "/Assets/Songs/ET_Guitar_Something.mp3",
+      {
+        Path: "/Assets/Songs/ET_Guitar_Cavalry.mp3",
+        Title: "Cavalry",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_Guitar_Nobody_Knows_You_When_You're_Down_And_Out.mp3",
+        Title: "Nobody Knows You When You're Down And Out",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_Guitar_Something.mp3",
+        Title: "Something",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
     ],
     "Guitar-patrick": [
-      "/Assets/Songs/Weird/Last_Christmas.m4a",
-      "/Assets/Songs/Weird/Mistletoe_ftJazzy_G.m4a",
-      "/Assets/Songs/Weird/Rockin_Around_The_Christmas_Tree.m4a",
+      {
+        Path: "/Assets/Songs/Weird/Last_Christmas.m4a",
+        Title: "Last Christmas",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/Weird/Mistletoe_ftJazzy_G.m4a",
+        Title: "Mistletoe ft. Jazzy G",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/Weird/Rockin_Around_The_Christmas_Tree.m4a",
+        Title: "Rockin Around The Christmas Tree",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
     ],
     "Bass-simple-melody": [
-      "/Assets/Songs/ET_BO_A_12BB.mp3",
-      "/Assets/Songs/ET_BO_B_G_15.mp3",
-      "/Assets/Songs/ET_BO_B_G_1415.mp3",
-      "/Assets/Songs/ET_BO_I_A_1415.mp3",
+      {
+        Path: "/Assets/Songs/ET_BO_A_12BB.mp3",
+        Title: "12BB",
+        Tip: "",
+        Key: "",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_BO_B_G_15.mp3",
+        Title: "G 15",
+        Tip: "",
+        Key: "G",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_BO_B_G_1415.mp3",
+        Title: "G 1415",
+        Tip: "",
+        Key: "G",
+        Chords: "",
+      },
+      {
+        Path: "/Assets/Songs/ET_BO_I_A_1415.mp3",
+        Title: "A 1415",
+        Tip: "",
+        Key: "A",
+        Chords: "",
+      },
     ],
     "Bass-complex-bassline": [],
     "Piano-simple-melody": [],
@@ -264,6 +410,8 @@ function EarTrainer() {
             songList={songList}
             difficulty={difficulty}
             difficultyNumber={difficultyNumber}
+            tip={tip}
+            setTip={setTip}
           />
         </div>
       </div>
