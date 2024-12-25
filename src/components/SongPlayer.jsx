@@ -8,6 +8,11 @@ function SongPlayer({
   setTip,
 }) {
   const playRandomSong = () => {
+    if (!songList[difficulty] || songList[difficulty].length === 0) {
+      console.log("No songs available for this difficulty level");
+      return;
+    }
+
     const randomIndex = Math.floor(Math.random() * songList[difficulty].length);
     // const newSong = songs[randomIndex];
 

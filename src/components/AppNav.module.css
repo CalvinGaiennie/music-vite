@@ -3,11 +3,12 @@
   top: 0;
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   text-decoration: none;
   color: black;
   z-index: 100;
   background-color: var(--background-color);
+  opacity: 0.9;
 }
 
 .nav ul {

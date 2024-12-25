@@ -1,19 +1,29 @@
+import { useEffect } from "react";
 import styles from "./Fretboard.module.css";
 
-function Fretboard() {
+function Fretboard({ currentKey, currentScale }) {
+  const scales = {
+    note: [0], // Just the root note
+    major: [0, 2, 4, 5, 7, 9, 11],
+    minor: [0, 2, 3, 5, 7, 8, 10],
+    majorPentatonic: [0, 2, 4, 7, 9],
+    minorPentatonic: [0, 3, 5, 7, 10],
+    majorArpeggio: [0, 4, 7],
+    minorArpeggio: [0, 3, 7],
+  };
   const notes = [
     "A",
-    "A#/Bb",
+    "A#",
     "B",
     "C",
-    "C#/Db",
+    "C#",
     "D",
-    "D#/Eb",
+    "D#",
     "E",
     "F",
-    "F#/Gb",
+    "F#",
     "G",
-    "G#/Ab",
+    "G#",
   ];
 
   const stringNames = ["E", "B", "G", "D", "A", "E"];
@@ -30,6 +40,42 @@ function Fretboard() {
     return notes[(startIndex + fretNumber + 1) % 12];
   }
 
+  function buildScale(startNote, scaleName) {
+    const newScale = [];
+    const startIndex = notes.findIndex((note) => note === startNote);
+
+    for (let i = 0; i < scales[scaleName].length; i++) {
+      const currentIndex = (scales[scaleName][i] + startIndex) % 12;
+      const currentNote = notes[currentIndex];
+      newScale.push(currentNote);
+    }
+    console.log("New Scale!!!:", newScale);
+    return newScale;
+  }
+
+  function clearAllActiveNotes() {
+    const allFrets = document.querySelectorAll(`.${styles.fret}`);
+    allFrets.forEach((fret) => {
+      fret.classList.remove(styles.active);
+    });
+  }
+
+  function highlightScaleNotes(scaleNotes) {
+    const allFrets = document.querySelectorAll(`.${styles.fret}`);
+    allFrets.forEach((fret) => {
+      const noteName = fret.getAttribute("data-noteName");
+      if (scaleNotes.includes(noteName)) {
+        fret.classList.add(styles.active);
+      }
+    });
+  }
+
+  useEffect(() => {
+    clearAllActiveNotes();
+    const scaleNotes = buildScale(currentKey, currentScale);
+    highlightScaleNotes(scaleNotes);
+  }, [currentKey, currentScale]);
+
   return (
     <div>
       <h1>Fretboard Simulator</h1>
@@ -42,7 +88,10 @@ function Fretboard() {
                 <div
                   key={`fret-${j}-string-${i + 1}`}
                   id={`fret-${j}-string-${i + 1}`}
-                  className={styles.fret}
+                  className={`${styles.fret} ${getNoteAtFret(
+                    stringNames[i],
+                    j
+                  )}`}
                   onMouseEnter={() => light(`fret-${j}-string-${i + 1}`)}
                   onMouseLeave={() => unLight(`fret-${j}-string-${i + 1}`)}
                   // data-noteName={notes[j]}

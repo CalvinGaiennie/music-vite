@@ -388,7 +388,7 @@ function EarTrainer() {
   };
 
   useEffect(() => {
-    setDifficultyNumber(songList[difficulty].length);
+    setDifficultyNumber(songList[difficulty]?.length) || 0;
   }, [difficulty]);
 
   return (

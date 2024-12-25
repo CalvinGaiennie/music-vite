@@ -1,38 +1,41 @@
-function EarTrainerSettings() {
+function FretboardSettings({ setCurrentKey, setCurrentScale }) {
   const notes = [
-    "A",
-    "A#/Bb",
-    "B",
-    "C",
-    "C#/Db",
-    "D",
-    "D#/Eb",
-    "E",
-    "F",
-    "F#/Gb",
-    "G",
-    "G#/Ab",
+    { display: "A", value: "A" },
+    { display: "A#/Bb", value: "A#" },
+    { display: "B", value: "B" },
+    { display: "C", value: "C" },
+    { display: "C#/Db", value: "C#" },
+    { display: "D", value: "D" },
+    { display: "D#/Eb", value: "D#" },
+    { display: "E", value: "E" },
+    { display: "F", value: "F" },
+    { display: "F#/Gb", value: "F#" },
+    { display: "G", value: "G" },
+    { display: "G#/Ab", value: "G#" },
   ];
   return (
     <div className="settings">
       <h1>Settings</h1>
       <h3>Select a Key</h3>
-      <select>
+      <select onChange={(e) => setCurrentKey(e.target.value)}>
+        <option key={"empty"} value={"empty"}>
+          Empty
+        </option>
         {notes.map((note) => (
-          <option key={note} value={note}>
-            {note}
+          <option key={note.display} value={note.value}>
+            {note.display}
           </option>
         ))}
       </select>
       <h3>Select a Scale</h3>
-      <select>
-        <option value="note">Note</option>
+      <select onChange={(e) => setCurrentScale(e.target.value)}>
+        <option value="note">Root</option>
         <option value="major">Major</option>
         <option value="minor">Minor</option>
-        <option value="major-pentatonic">Major Pentatonic</option>
-        <option value="minor-pentatonic">Minor Pentatonic</option>
-        <option value="major-arpeggio">Major Arpeggio</option>
-        <option value="minor-arpeggio">Minor Arpeggio</option>
+        <option value="majorPentatonic">Major Pentatonic</option>
+        <option value="minorPentatonic">Minor Pentatonic</option>
+        <option value="majorArpeggio">Major Arpeggio</option>
+        <option value="minorArpeggio">Minor Arpeggio</option>
       </select>
       <h3>Select Pattern</h3>
       <select>
@@ -47,4 +50,4 @@ function EarTrainerSettings() {
   );
 }
 
-export default EarTrainerSettings;
+export default FretboardSettings;

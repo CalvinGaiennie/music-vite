@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import FretboardSimulator from "./pages/FretboardSimulator";
 import EarTrainer from "./pages/EarTrainer";
-import Metronome from "./pages/Metronome";
+import StickControl from "./pages/StickControl";
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<EarTrainer />} />
           <Route path="/fretboard-simulator" element={<FretboardSimulator />} />
-          <Route path="/metronome" element={<Metronome />} />
+          <Route path="/metronome" element={<StickControl />} />
         </Routes>
       </BrowserRouter>
     </>
