@@ -34,7 +34,11 @@ function StickControl() {
           setNoteType={setNoteType}
           setNumOfMeasures={setNumOfMeasures}
         />
-        <Metronome numOfBeats={numOfBeats} lengthOfBeat={lengthOfBeat} />
+        <Metronome
+          numOfBeats={numOfBeats}
+          lengthOfBeat={lengthOfBeat}
+          noteType={noteType}
+        />
       </div>
     </div>
   );

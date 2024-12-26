@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./Metronome.module.css";
 
-function Metronome({ numOfBeats, lengthOfBeat }) {
+function Metronome({ numOfBeats, lengthOfBeat, noteType }) {
   const rudiments = [
+    {
+      RudimentNumber: "Zero",
+      Rudiment: " 0:",
+    },
     {
       RudimentNumber: "One",
       Rudiment: " 1: R L R L    R L R L      R L R L    R L R L",
@@ -101,11 +105,14 @@ function Metronome({ numOfBeats, lengthOfBeat }) {
     },
   ];
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentRudimentIndex, setCurrentRudimentIndex] = useState(0);
+
   const intervalRef = useRef(null);
   const toggleButtonRef = useRef(null);
   const audioContext = useRef(null);
   const currBeatRef = useRef(0);
-  const [currentRudimentIndex, setCurrentRudimentIndex] = useState(0);
+  const measureNumberDiv = useRef(0);
+  const currMeasureRef = useRef(0);
 
   function toggleWorkout() {
     if (isPlaying) {
@@ -123,17 +130,25 @@ function Metronome({ numOfBeats, lengthOfBeat }) {
       }
 
       currBeatRef.current = 0;
-      console.log("Starting workout, beat reset to:", currBeatRef.current);
 
       intervalRef.current = setInterval(() => {
         playClick();
-        currBeatRef.current = (currBeatRef.current + 1) % numOfBeats;
-        console.log("After increment - beat:", currBeatRef.current);
 
-        if (currBeatRef.current === 0) {
+        if (currBeatRef.current % noteType === 0) {
+          currMeasureRef.current = currMeasureRef.current + 1;
+          console.log("current measure", currMeasureRef);
+          measureNumberDiv.current.innerHTML = currMeasureRef.current;
+        }
+
+        currBeatRef.current = (currBeatRef.current + 1) % numOfBeats;
+
+        if (currBeatRef.current === 1) {
           setCurrentRudimentIndex(
             (prevIndex) => (prevIndex + 1) % rudiments.length
           );
+        }
+        if (currBeatRef.current === 0) {
+          currMeasureRef.current = 0;
         }
       }, lengthOfBeat * 1000);
 
@@ -149,7 +164,7 @@ function Metronome({ numOfBeats, lengthOfBeat }) {
     const oscillator = audioContext.current.createOscillator();
     const gainNode = audioContext.current.createGain();
 
-    oscillator.type = currBeatRef.current === 0 ? "square" : "sine";
+    oscillator.type = currBeatRef.current % noteType == 0 ? "square" : "sine";
     oscillator.frequency.setValueAtTime(1000, audioContext.current.currentTime);
     gainNode.gain.setValueAtTime(0.1, audioContext.current.currentTime);
 
@@ -172,10 +187,11 @@ function Metronome({ numOfBeats, lengthOfBeat }) {
     <div className={styles.metronome}>
       <h1>Stick Control Workout</h1>
       <img src="../Assets/StickControlImages/staff.png" width="300px" />
-      <p>{rudiments[currentRudimentIndex].Rudiment}</p>
-      <div id="imgDiv"></div>
-      <div id="measureNumberDiv"></div>
-
+      <p id="imgDiv">{rudiments[currentRudimentIndex].Rudiment}</p>
+      <p>
+        <strong>Measure: </strong>
+        <span ref={measureNumberDiv}></span>
+      </p>
       <button
         className={styles.workoutToggle}
         onClick={toggleWorkout}
