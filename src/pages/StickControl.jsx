@@ -9,7 +9,6 @@ function StickControl() {
   const [numOfMeasures, setNumOfMeasures] = useState("2");
   const [numOfBeats, setNumOfBeats] = useState("");
   const [lengthOfBeat, setLengthOfBeat] = useState("");
-  const [currMeasureNumber, setCurrentMeasureNumber] = useState("");
 
   function countTotalClicks() {
     const currNumOfBeats = Number(numOfMeasures) * Number(noteType);

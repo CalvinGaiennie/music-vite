@@ -1,4 +1,20 @@
 function MetronomeSettings({ setBPM, setNoteType, setNumOfMeasures }) {
+  const stickControlBannerDivEl = document.getElementById("imgDiv");
+  function displayRudimentImages() {
+    for (let i = 1; i <= 24; i++) {
+      const img = document.createElement("img");
+      img.src = `../assets/rudimentimages/rudiment${i}.png`;
+      img.classList = "bannerImg";
+
+      img.setAttribute(
+        "onclick",
+        `handleImageClick(${i - 1}); displayRudimentText();`
+      );
+
+      stickControlBannerDivEl.appendChild(img);
+    }
+  }
+
   return (
     <div className="settings">
       <h1>Settings</h1>
@@ -24,34 +40,8 @@ function MetronomeSettings({ setBPM, setNoteType, setNumOfMeasures }) {
           </option>
         ))}
       </select>
-      <div>
+      <div id="imgDiv">
         <h1>Rudiments</h1>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
-        <p>a</p>
       </div>
     </div>
   );
