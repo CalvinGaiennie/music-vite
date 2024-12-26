@@ -4,8 +4,8 @@ import Metronome from "../components/Metronome";
 import { useEffect, useState } from "react";
 
 function StickControl() {
-  const [BPM, setBPM] = useState("40");
-  const [noteType, setNoteType] = useState("4");
+  const [BPM, setBPM] = useState("90");
+  const [noteType, setNoteType] = useState("8");
   const [numOfMeasures, setNumOfMeasures] = useState("2");
   const [numOfBeats, setNumOfBeats] = useState("");
   const [lengthOfBeat, setLengthOfBeat] = useState("");

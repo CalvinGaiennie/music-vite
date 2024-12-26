@@ -1,27 +1,22 @@
+import styles from "./MetronomeSettings.module.css";
 function MetronomeSettings({ setBPM, setNoteType, setNumOfMeasures }) {
-  const stickControlBannerDivEl = document.getElementById("imgDiv");
-  function displayRudimentImages() {
-    for (let i = 1; i <= 24; i++) {
-      const img = document.createElement("img");
-      img.src = `../assets/rudimentimages/rudiment${i}.png`;
-      img.classList = "bannerImg";
-
-      img.setAttribute(
-        "onclick",
-        `handleImageClick(${i - 1}); displayRudimentText();`
-      );
-
-      stickControlBannerDivEl.appendChild(img);
-    }
-  }
+  const rudimentImages = Array.from({ length: 24 }, (_, i) => (
+    <img
+      key={i}
+      src={`/Assets/rudimentimages/rudiment${i + 1}.png`}
+      className={styles.bannerImg}
+      onClick={() => {}}
+      alt={`Rudiment ${i + 1}`}
+    />
+  ));
 
   return (
-    <div className="settings">
+    <div className={styles.settings}>
       <h1>Settings</h1>
       <h3>BPM</h3>
       <select onChange={(e) => setBPM(e.target.value)}>
         {Array.from({ length: 161 }, (_, i) => (
-          <option key={i} value={i + 40}>
+          <option key={i} value={i + 40} selected={i === 80}>
             {i + 40}
           </option>
         ))}
@@ -29,7 +24,9 @@ function MetronomeSettings({ setBPM, setNoteType, setNumOfMeasures }) {
       <h3>Note Type</h3>
       <select onChange={(e) => setNoteType(e.target.value)}>
         <option value="4">Quarter</option>
-        <option value="8">Eighth</option>
+        <option value="8" selected>
+          Eighth
+        </option>
         <option value="16">Sixteenth</option>
       </select>
       <h3>Measures Per Rudiment</h3>
@@ -42,6 +39,7 @@ function MetronomeSettings({ setBPM, setNoteType, setNumOfMeasures }) {
       </select>
       <div id="imgDiv">
         <h1>Rudiments</h1>
+        {rudimentImages}
       </div>
     </div>
   );
