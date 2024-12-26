@@ -28,7 +28,10 @@ function SongPlayer({
     //Play the song
     const audioPlayer = document.getElementById("audioPlayer");
     audioPlayer.load();
-    audioPlayer.play();
+
+    setTimeout(() => {
+      audioPlayer.play();
+    }, 200);
   };
 
   const getTip = () => {
