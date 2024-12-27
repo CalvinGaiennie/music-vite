@@ -90,8 +90,8 @@ function Fretboard({ currentKey, currentScale }) {
   return (
     <div>
       <h1>Fretboard Simulator</h1>
-      <div className={styles.flex}>
-        <div className={styles.fretboard}>
+      <div className={(styles.flex, styles.fretboard)}>
+        <div>
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={`outer-string-${i + 1}`} className={`${styles.string}`}>
               {Array.from({ length: 23 }).map((_, j) => (
