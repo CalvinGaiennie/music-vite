@@ -1,3 +1,5 @@
+import { useRef } from "react";
+
 function SongPlayer({
   setSong,
   song,
@@ -6,7 +8,11 @@ function SongPlayer({
   difficultyNumber,
   tip,
   setTip,
+  songInfo,
+  setSongInfo,
 }) {
+  const tipP = useRef(null);
+  const songInfoP = useRef(null);
   const playRandomSong = () => {
     if (!songList[difficulty] || songList[difficulty].length === 0) {
       console.log("No songs available for this difficulty level");
@@ -18,12 +24,14 @@ function SongPlayer({
 
     const newSong = songList[difficulty][randomIndex].Path;
     const newTip = songList[difficulty][randomIndex].Tip;
-    const tipP = document.getElementById("tipP");
-    tipP.innerHTML = "";
+    const newSongInfo = songList[difficulty][randomIndex].songInfo;
+    tipP.current.innerHTML = "";
+    songInfoP.current.innerHTML = "";
 
-    //Updat the song state
+    //Update the song state
     setSong(newSong);
     setTip(newTip);
+    setSongInfo(newSongInfo);
     console.log("New Song", newSong);
     //Play the song
     const audioPlayer = document.getElementById("audioPlayer");
@@ -35,8 +43,11 @@ function SongPlayer({
   };
 
   const getTip = () => {
-    const tipP = document.getElementById("tipP");
-    tipP.innerHTML = tip;
+    tipP.current.innerHTML = tip;
+  };
+
+  const getSongInfo = () => {
+    songInfoP.current.innerHTML = songInfo;
   };
 
   return (
@@ -50,9 +61,10 @@ function SongPlayer({
       <p>Number of Songs in this Bank: {difficultyNumber}</p>
       <br />
       <button onClick={getTip}>Get a Tip</button>
-      <p id="tipP"></p>
+      <p ref={tipP}></p>
       <br />
-      <button>Show Song Info</button>
+      <button onClick={getSongInfo}>Show Song Info</button>
+      <p ref={songInfoP}></p>
     </div>
   );
 }

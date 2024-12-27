@@ -9,6 +9,7 @@ function EarTrainer() {
   const [difficulty, setDifficulty] = useState("Guitar-simple-melody");
   const [difficultyNumber, setDifficultyNumber] = useState(0);
   const [tip, setTip] = useState("");
+  const [songInfo, setSongInfo] = useState("");
 
   const handleDifficultyChange = (e) => {
     setDifficulty(e.target.value);
@@ -17,14 +18,30 @@ function EarTrainer() {
   const difficulties = {
     GuitarDifficulties: (
       <select onChange={handleDifficultyChange}>
-        <option value="Guitar-simple-melody">Simple Melody</option>
-        <option value="Guitar-complex-melody">Complex Melody</option>
-        <option value="Guitar-easy-only-key-g">Easy Only Key G</option>
-        <option value="Guitar-easy">Easy </option>
-        <option value="Guitar-easy-with-a-capo">Easy With a Capo</option>
-        <option value="Guitar-intermediate">Intermediate</option>
-        <option value="Guitar-full-songs">Full Songs</option>
-        <option value="Guitar-patrick">Patrick</option>
+        <option key="Guitar-simple-melody" value="Guitar-simple-melody">
+          Simple Melody
+        </option>
+        <option key="Guitar-complex-melody" value="Guitar-complex-melody">
+          Complex Melody
+        </option>
+        <option key="Guitar-easy-only-key-g" value="Guitar-easy-only-key-g">
+          Easy Only Key G
+        </option>
+        <option key="Guitar-easy" value="Guitar-easy">
+          Easy{" "}
+        </option>
+        <option key="Guitar-easy-with-a-capo" value="Guitar-easy-with-a-capo">
+          Easy With a Capo
+        </option>
+        <option key="Guitar-intermediate" value="Guitar-intermediate">
+          Intermediate
+        </option>
+        <option key="Guitar-full-songs" value="Guitar-full-songs">
+          Full Songs
+        </option>
+        <option key="Guitar-patrick" value="Guitar-patrick">
+          Patrick
+        </option>
       </select>
     ),
     GuitarGuide: (
@@ -199,14 +216,16 @@ function EarTrainer() {
         Title: "El Paso",
         Tip: "test",
         Key: "",
-        Chords: "",
+        Chords: "test",
+        SongInfo: "test",
       },
       {
         Path: "/Assets/Songs/ET_MO_I_GOTTV1.mp3",
         Title: "GOTTV1",
         Tip: "test",
         Key: "",
-        Chords: "",
+        Chords: "test",
+        SongInfo: "test",
       },
     ],
     "Guitar-complex-melody": [],
@@ -214,35 +233,35 @@ function EarTrainer() {
       {
         Path: "/Assets/Songs/ET_Guitar_1415G.mp3",
         Title: "1415G",
-        Tip: "",
+        Tip: "Come on dude really?",
         Key: "G",
         Chords: "",
       },
       {
         Path: "/Assets/Songs/ET_Guitar_1465G.mp3",
         Title: "1465G",
-        Tip: "",
+        Tip: "Come on dude really?",
         Key: "G",
         Chords: "",
       },
       {
         Path: "/Assets/Songs/ET_Guitar_1524G.mp3",
         Title: "1524G",
-        Tip: "",
+        Tip: "Come on dude really?",
         Key: "G",
         Chords: "",
       },
       {
         Path: "/Assets/Songs/ET_Guitar_1645G.mp3",
         Title: "1645G",
-        Tip: "",
+        Tip: "Come on dude really?",
         Key: "G",
         Chords: "",
       },
       {
         Path: "/Assets/Songs/ET_Guitar_5411G.mp3",
         Title: "5411G",
-        Tip: "",
+        Tip: "Come on dude really?",
         Key: "G",
         Chords: "",
       },
@@ -412,6 +431,8 @@ function EarTrainer() {
             difficultyNumber={difficultyNumber}
             tip={tip}
             setTip={setTip}
+            songInfo={songInfo}
+            setSongInfo={setSongInfo}
           />
         </div>
       </div>

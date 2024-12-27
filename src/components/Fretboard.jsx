@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Fretboard.module.css";
 
 function Fretboard({ currentKey, currentScale }) {
+  const [isScaleActive, setIsScaleActive] = useState(false);
+
   const scales = {
     note: [0], // Just the root note
     major: [0, 2, 4, 5, 7, 9, 11],
@@ -27,17 +29,22 @@ function Fretboard({ currentKey, currentScale }) {
   ];
 
   const stringNames = ["E", "B", "G", "D", "A", "E"];
+
   function light(id) {
-    document.getElementById(id).classList.add(styles.active);
+    if (isScaleActive == false) {
+      document.getElementById(id).classList.add(styles.active);
+    }
   }
 
   function unLight(id) {
-    document.getElementById(id).classList.remove(styles.active);
+    if (isScaleActive == false) {
+      document.getElementById(id).classList.remove(styles.active);
+    }
   }
 
   function getNoteAtFret(stringNote, fretNumber) {
     const startIndex = notes.findIndex((note) => note === stringNote);
-    return notes[(startIndex + fretNumber + 1) % 12];
+    return notes[(startIndex + fretNumber) % 12];
   }
 
   function buildScale(startNote, scaleName) {
@@ -58,6 +65,7 @@ function Fretboard({ currentKey, currentScale }) {
     allFrets.forEach((fret) => {
       fret.classList.remove(styles.active);
     });
+    setIsScaleActive(false);
   }
 
   function highlightScaleNotes(scaleNotes) {
@@ -68,44 +76,50 @@ function Fretboard({ currentKey, currentScale }) {
         fret.classList.add(styles.active);
       }
     });
+    setIsScaleActive(true);
   }
 
   useEffect(() => {
     clearAllActiveNotes();
-    const scaleNotes = buildScale(currentKey, currentScale);
-    highlightScaleNotes(scaleNotes);
-  }, [currentKey, currentScale]);
+    if (currentKey != "empty") {
+      const scaleNotes = buildScale(currentKey, currentScale);
+      highlightScaleNotes(scaleNotes);
+    }
+  }, [currentKey, currentScale, buildScale]);
 
   return (
     <div>
       <h1>Fretboard Simulator</h1>
       <div className={styles.flex}>
-        <div className={styles.nut}></div>
         <div className={styles.fretboard}>
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={`outer-string-${i + 1}`} className={`${styles.string}`}>
-              {Array.from({ length: 20 }).map((_, j) => (
+              {Array.from({ length: 23 }).map((_, j) => (
                 <div
                   key={`fret-${j}-string-${i + 1}`}
                   id={`fret-${j}-string-${i + 1}`}
                   className={`${styles.fret} ${getNoteAtFret(
                     stringNames[i],
                     j
-                  )}`}
+                  )} ${j == 0 ? styles.fretnut : ""}`}
                   onMouseEnter={() => light(`fret-${j}-string-${i + 1}`)}
                   onMouseLeave={() => unLight(`fret-${j}-string-${i + 1}`)}
                   // data-noteName={notes[j]}
                   data-noteName={getNoteAtFret(stringNames[i], j)}
                   data-stringNoteName={stringNames[i]}
                 >
-                  <div
-                    key={`innerFret-${j}-string-${i + 1}`}
-                    id={`innerFret-${j}-string-${i + 1}`}
-                    style={{ "--fret-number": j, "--string-number": i + 1 }}
-                    className={`${styles.innerFret} ${
-                      styles[`string${i + 1}`]
-                    }`}
-                  ></div>
+                  {j != 0 ? (
+                    <div
+                      key={`innerFret-${j}-string-${i + 1}`}
+                      id={`innerFret-${j}-string-${i + 1}`}
+                      style={{ "--fret-number": j, "--string-number": i + 1 }}
+                      className={`${styles.innerFret} ${
+                        styles[`string${i + 1}`]
+                      }`}
+                    ></div>
+                  ) : (
+                    ""
+                  )}
                 </div>
               ))}
             </div>

@@ -12,6 +12,15 @@
   z-index: 2;
 }
 
+.fretnut {
+  width: 50px;
+  border-right: 2px solid black;
+  display: flex; /* Add this */
+  align-items: center;
+  position: relative;
+  background-color: black;
+}
+
 .fret {
   width: 50px;
   border-right: 2px solid black;

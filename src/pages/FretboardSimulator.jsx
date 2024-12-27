@@ -4,7 +4,7 @@ import Fretboard from "../components/Fretboard";
 import FretboardSettings from "../components/FretboardSettings";
 
 function FretboardSimulator() {
-  const [currentKey, setCurrentKey] = useState("");
+  const [currentKey, setCurrentKey] = useState("empty");
   const [currentScale, setCurrentScale] = useState("note");
 
   return (
