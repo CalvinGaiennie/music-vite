@@ -1,4 +1,10 @@
-function FretboardSettings({ setCurrentKey, setCurrentScale }) {
+import styles from "./Fretboard.module.css";
+function FretboardSettings({
+  setCurrentKey,
+  setCurrentScale,
+  displayingAllNotes,
+  setDisplayingAllNotes,
+}) {
   const notes = [
     { display: "A", value: "A" },
     { display: "A#/Bb", value: "A#" },
@@ -13,9 +19,27 @@ function FretboardSettings({ setCurrentKey, setCurrentScale }) {
     { display: "G", value: "G" },
     { display: "G#/Ab", value: "G#" },
   ];
+  function displayAllNotes() {
+    if (displayingAllNotes == false) {
+      const allFrets = document.querySelectorAll(`.${styles.fret}`);
+      allFrets.forEach((fret) => {
+        fret.classList.add(styles.active);
+      });
+    } else {
+      const allFrets = document.querySelectorAll(`.${styles.fret}`);
+      allFrets.forEach((fret) => {
+        fret.classList.remove(styles.active);
+      });
+    }
+  }
+
   return (
     <div className="settings">
       <h1>Settings</h1>
+      <h3>Display All Notes</h3>
+      <button onClick={() => displayAllNotes()}>
+        {displayingAllNotes ? "Hide All Notes" : "Display All Notes"}
+      </button>
       <h3>Select a Key</h3>
       <select onChange={(e) => setCurrentKey(e.target.value)}>
         <option key={"empty"} value={"empty"}>

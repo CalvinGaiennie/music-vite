@@ -6,6 +6,7 @@ import FretboardSettings from "../components/FretboardSettings";
 function FretboardSimulator() {
   const [currentKey, setCurrentKey] = useState("empty");
   const [currentScale, setCurrentScale] = useState("note");
+  const [displayingAllNotes, setDisplayingAllNotes] = useState(false);
 
   return (
     <div>
@@ -14,6 +15,8 @@ function FretboardSimulator() {
         <FretboardSettings
           setCurrentKey={setCurrentKey}
           setCurrentScale={setCurrentScale}
+          displayingAllNotes={displayingAllNotes}
+          setDisplayingAllNotes={setDisplayingAllNotes}
         />
         <Fretboard currentScale={currentScale} currentKey={currentKey} />
         <p>{currentKey}</p>
