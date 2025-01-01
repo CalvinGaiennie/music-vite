@@ -1,10 +1,5 @@
 import styles from "./Fretboard.module.css";
-function FretboardSettings({
-  setCurrentKey,
-  setCurrentScale,
-  displayingAllNotes,
-  setDisplayingAllNotes,
-}) {
+function FretboardSettings({ dispatch, displayingAllNotes }) {
   const notes = [
     { display: "A", value: "A" },
     { display: "A#/Bb", value: "A#" },
@@ -34,14 +29,18 @@ function FretboardSettings({
   }
 
   return (
-    <div className="settings">
+    <div className={`settings ${styles.fretboardSettings}`}>
       <h1>Settings</h1>
       <h3>Display All Notes</h3>
       <button onClick={() => displayAllNotes()}>
         {displayingAllNotes ? "Hide All Notes" : "Display All Notes"}
       </button>
       <h3>Select a Key</h3>
-      <select onChange={(e) => setCurrentKey(e.target.value)}>
+      <select
+        onChange={(e) =>
+          dispatch({ type: "SET_CURRENT_KEY", payload: e.target.value })
+        }
+      >
         <option key={"empty"} value={"empty"}>
           Empty
         </option>
@@ -52,7 +51,11 @@ function FretboardSettings({
         ))}
       </select>
       <h3>Select a Scale</h3>
-      <select onChange={(e) => setCurrentScale(e.target.value)}>
+      <select
+        onChange={(e) =>
+          dispatch({ type: "SET_CURRENT_SCALE", payload: e.target.value })
+        }
+      >
         <option value="note">Root</option>
         <option value="major">Major</option>
         <option value="minor">Minor</option>

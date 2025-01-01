@@ -1,14 +1,20 @@
 :root {
   --background-color: white;
+  --border-color: #e0e0e0;
 }
 
 body {
   padding: 0;
-  margin: 1rem;
+  margin: 0;
 }
 
-.flex {
+.page {
   display: flex;
+  margin-left: 1rem;
+}
+
+.main-page {
+  margin-left: 1rem;
 }
 
 .element {
@@ -17,4 +23,11 @@ body {
 
 .settings {
   padding-right: 20px;
+  border-right: 1px solid var(--border-color);
+  height: 100vh;
+  width: 25vw;
+}
+
+.main-page {
+  margin-left: 1rem;
 }

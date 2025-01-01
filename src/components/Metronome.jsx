@@ -184,7 +184,7 @@ function Metronome({ numOfBeats, lengthOfBeat, noteType }) {
   }, []);
 
   return (
-    <div className={styles.metronome}>
+    <div className={(styles.metronome, "main-page")}>
       <h1>Stick Control Workout</h1>
       <img src="../Assets/StickControlImages/staff.png" width="300px" />
       <p id="imgDiv">{rudiments[currentRudimentIndex].Rudiment}</p>

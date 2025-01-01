@@ -1,5 +1,5 @@
 import styles from "./MetronomeSettings.module.css";
-function MetronomeSettings({ setBPM, setNoteType, setNumOfMeasures }) {
+function MetronomeSettings({ dispatch, displayingAllNotes }) {
   const rudimentImages = Array.from({ length: 24 }, (_, i) => (
     <img
       key={i}
@@ -11,10 +11,12 @@ function MetronomeSettings({ setBPM, setNoteType, setNumOfMeasures }) {
   ));
 
   return (
-    <div className={styles.settings}>
+    <div className={`settings ${styles.metronomeSettings}`}>
       <h1>Settings</h1>
       <h3>BPM</h3>
-      <select onChange={(e) => setBPM(e.target.value)}>
+      <select
+        onChange={(e) => dispatch({ type: "SET_BPM", payload: e.target.value })}
+      >
         {Array.from({ length: 161 }, (_, i) => (
           <option key={i} value={i + 40} selected={i === 80}>
             {i + 40}
@@ -22,7 +24,11 @@ function MetronomeSettings({ setBPM, setNoteType, setNumOfMeasures }) {
         ))}
       </select>
       <h3>Note Type</h3>
-      <select onChange={(e) => setNoteType(e.target.value)}>
+      <select
+        onChange={(e) =>
+          dispatch({ type: "SET_NOTE_TYPE", payload: e.target.value })
+        }
+      >
         <option value="4">Quarter</option>
         <option value="8" selected>
           Eighth
@@ -30,7 +36,11 @@ function MetronomeSettings({ setBPM, setNoteType, setNumOfMeasures }) {
         <option value="16">Sixteenth</option>
       </select>
       <h3>Measures Per Rudiment</h3>
-      <select onChange={(e) => setNumOfMeasures(e.target.value)}>
+      <select
+        onChange={(e) =>
+          dispatch({ type: "SET_NUM_OF_MEASURES", payload: e.target.value })
+        }
+      >
         {Array.from({ length: 25 }, (_, i) => (
           <option key={i} value={(i + 1) * 2}>
             {(i + 1) * 2}

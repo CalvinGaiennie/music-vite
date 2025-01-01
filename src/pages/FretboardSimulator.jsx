@@ -1,27 +1,45 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import AppNav from "../components/AppNav";
 import Fretboard from "../components/Fretboard";
 import FretboardSettings from "../components/FretboardSettings";
 
+const initialState = {
+  currentKey: "empty",
+  currentScale: "note",
+  displayingAllNotes: false,
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "SET_CURRENT_KEY":
+      return { ...state, currentKey: action.payload };
+    case "SET_CURRENT_SCALE":
+      return { ...state, currentScale: action.payload };
+    case "SET_DISPLAYING_ALL_NOTES":
+      return { ...state, displayingAllNotes: action.payload };
+    default:
+      return state;
+  }
+}
+
 function FretboardSimulator() {
-  const [currentKey, setCurrentKey] = useState("empty");
-  const [currentScale, setCurrentScale] = useState("note");
-  const [displayingAllNotes, setDisplayingAllNotes] = useState(false);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div>
+    <>
       <AppNav />
-      <div className="flex">
+      <div className="page">
         <FretboardSettings
-          setCurrentKey={setCurrentKey}
-          setCurrentScale={setCurrentScale}
-          displayingAllNotes={displayingAllNotes}
-          setDisplayingAllNotes={setDisplayingAllNotes}
+          dispatch={dispatch}
+          displayingAllNotes={state.displayingAllNotes}
         />
-        <Fretboard currentScale={currentScale} currentKey={currentKey} />
-        <p>{currentKey}</p>
+        <Fretboard
+          currentScale={state.currentScale}
+          currentKey={state.currentKey}
+        />
+        <p>{state.currentKey}</p>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -31,13 +31,13 @@ function Fretboard({ currentKey, currentScale }) {
   const stringNames = ["E", "B", "G", "D", "A", "E"];
 
   function light(id) {
-    if (isScaleActive == false) {
+    if (isScaleActive === false) {
       document.getElementById(id).classList.add(styles.active);
     }
   }
 
   function unLight(id) {
-    if (isScaleActive == false) {
+    if (isScaleActive === false) {
       document.getElementById(id).classList.remove(styles.active);
     }
   }
@@ -81,14 +81,14 @@ function Fretboard({ currentKey, currentScale }) {
 
   useEffect(() => {
     clearAllActiveNotes();
-    if (currentKey != "empty") {
+    if (currentKey !== "empty") {
       const scaleNotes = buildScale(currentKey, currentScale);
       highlightScaleNotes(scaleNotes);
     }
   }, [currentKey, currentScale, buildScale]);
 
   return (
-    <div>
+    <div className="main-page">
       <h1>Fretboard Simulator</h1>
       <div className={(styles.flex, styles.fretboard)}>
         <div>

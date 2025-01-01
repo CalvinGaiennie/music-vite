@@ -1,46 +1,62 @@
 import AppNav from "../components/AppNav";
 import MetronomeSettings from "../components/MetronomeSettings";
 import Metronome from "../components/Metronome";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
+
+const initialState = {
+  BPM: "90",
+  noteType: "8",
+  numOfMeasures: "2",
+  numOfBeats: "",
+  lengthOfBeat: "",
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "SET_BPM":
+      return { ...state, BPM: action.payload };
+    case "SET_NOTE_TYPE":
+      return { ...state, noteType: action.payload };
+    case "SET_NUM_OF_MEASURES":
+      return { ...state, numOfMeasures: action.payload };
+    case "SET_NUM_OF_BEATS":
+      return { ...state, numOfBeats: action.payload };
+    case "SET_LENGTH_OF_BEAT":
+      return { ...state, lengthOfBeat: action.payload };
+    default:
+      return state;
+  }
+}
 
 function StickControl() {
-  const [BPM, setBPM] = useState("90");
-  const [noteType, setNoteType] = useState("8");
-  const [numOfMeasures, setNumOfMeasures] = useState("2");
-  const [numOfBeats, setNumOfBeats] = useState("");
-  const [lengthOfBeat, setLengthOfBeat] = useState("");
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   function countTotalClicks() {
-    const currNumOfBeats = Number(numOfMeasures) * Number(noteType);
-
-    setNumOfBeats(currNumOfBeats);
+    const currNumOfBeats = Number(state.numOfMeasures) * Number(state.noteType);
+    dispatch({ type: "SET_NUM_OF_BEATS", payload: currNumOfBeats });
   }
 
   useEffect(() => {
     countTotalClicks();
-  }, [noteType, numOfMeasures, BPM]);
+  }, [state.noteType, state.numOfMeasures, state.BPM]);
 
   useEffect(() => {
-    const currLengthOfBeat = (60 / BPM / noteType) * 4;
-    setLengthOfBeat(currLengthOfBeat);
-  }, [BPM, noteType]);
+    const currLengthOfBeat = (60 / state.BPM / state.noteType) * 4;
+    dispatch({ type: "SET_LENGTH_OF_BEAT", payload: currLengthOfBeat });
+  }, [state.BPM, state.noteType]);
 
   return (
-    <div>
+    <>
       <AppNav />
-      <div className="flex">
-        <MetronomeSettings
-          setBPM={setBPM}
-          setNoteType={setNoteType}
-          setNumOfMeasures={setNumOfMeasures}
-        />
+      <div className="page">
+        <MetronomeSettings dispatch={dispatch} />
         <Metronome
-          numOfBeats={numOfBeats}
-          lengthOfBeat={lengthOfBeat}
-          noteType={noteType}
+          numOfBeats={state.numOfBeats}
+          lengthOfBeat={state.lengthOfBeat}
+          noteType={state.noteType}
         />
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,28 +1,28 @@
 import { useEffect } from "react";
 import styles from "./EarTrainerSettings.module.css";
+
 function EarTrainerSettings({
+  dispatch,
   instrument,
-  setInstrument,
   difficulty,
-  setDifficulty,
   difficulties,
 }) {
   function handleInstrumentChange(e) {
-    setInstrument(e.target.value);
-  }
-
-  function handleDifficultyChange(e) {
-    setDifficulty(e.target.value);
+    dispatch({ type: "SET_INSTRUMENT", payload: e.target.value });
   }
 
   useEffect(() => {
     console.log(difficulty);
   }, [difficulty]);
+
   return (
-    <div className={styles.settings}>
+    <div className={`settings ${styles.earTrainerSettings}`}>
       <h1>Settings</h1>
       <h3>Select An Instrument</h3>
-      <select className="instrument-select" onChange={handleInstrumentChange}>
+      <select
+        className={styles.instrumentSelect}
+        onChange={handleInstrumentChange}
+      >
         <option value="Guitar">Guitar</option>
         <option value="Bass">Bass</option>
         <option value="Piano">Piano</option>

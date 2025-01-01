@@ -1,18 +1,41 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import AppNav from "../components/AppNav";
 import EarTrainerSettings from "../components/EarTrainerSettings";
 import SongPlayer from "../components/SongPlayer";
 
+const initialState = {
+  song: "/Assets/Songs/ET_1_Simple_Man.mp3",
+  instrument: "Guitar",
+  difficulty: "Guitar-simple-melody",
+  difficultyNumber: 0,
+  tip: "",
+  songInfo: "",
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "SET_SONG":
+      return { ...state, song: action.payload };
+    case "SET_INSTRUMENT":
+      return { ...state, instrument: action.payload };
+    case "SET_DIFFICULTY":
+      return { ...state, difficulty: action.payload };
+    case "SET_DIFFICULTY_NUMBER":
+      return { ...state, difficultyNumber: action.payload };
+    case "SET_TIP":
+      return { ...state, tip: action.payload };
+    case "SET_SONG_INFO":
+      return { ...state, songInfo: action.payload };
+    default:
+      return state;
+  }
+}
+
 function EarTrainer() {
-  const [song, setSong] = useState("/Assets/Songs/ET_1_Simple_Man.mp3");
-  const [instrument, setInstrument] = useState("Guitar");
-  const [difficulty, setDifficulty] = useState("Guitar-simple-melody");
-  const [difficultyNumber, setDifficultyNumber] = useState(0);
-  const [tip, setTip] = useState("");
-  const [songInfo, setSongInfo] = useState("");
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleDifficultyChange = (e) => {
-    setDifficulty(e.target.value);
+    dispatch({ type: "SET_DIFFICULTY", payload: e.target.value });
   };
 
   const difficulties = {
@@ -407,36 +430,35 @@ function EarTrainer() {
   };
 
   useEffect(() => {
-    setDifficultyNumber(songList[difficulty]?.length) || 0;
-  }, [difficulty]);
+    dispatch({
+      type: "SET_DIFFICULTY_NUMBER",
+      payload: songList[state.difficulty]?.length || 0,
+    });
+  }, [state.difficulty]);
 
   return (
-    <div>
+    <>
       <AppNav />
-      <div className="flex">
+      <div className="page">
         <EarTrainerSettings
-          instrument={instrument}
-          setInstrument={setInstrument}
-          difficulty={difficulty}
-          setDifficulty={setDifficulty}
+          dispatch={dispatch}
+          instrument={state.instrument}
+          difficulty={state.difficulty}
           difficulties={difficulties}
         />
-        <div>
-          <h1>Ear Trainer</h1>
+        <div className="main-page">
           <SongPlayer
-            song={song}
-            setSong={setSong}
+            dispatch={dispatch}
+            song={state.song}
             songList={songList}
-            difficulty={difficulty}
-            difficultyNumber={difficultyNumber}
-            tip={tip}
-            setTip={setTip}
-            songInfo={songInfo}
-            setSongInfo={setSongInfo}
+            difficulty={state.difficulty}
+            difficultyNumber={state.difficultyNumber}
+            tip={state.tip}
+            songInfo={state.songInfo}
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

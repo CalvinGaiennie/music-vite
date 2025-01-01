@@ -1,15 +1,13 @@
 import { useRef } from "react";
 
 function SongPlayer({
-  setSong,
+  dispatch,
   song,
   songList,
   difficulty,
   difficultyNumber,
   tip,
-  setTip,
   songInfo,
-  setSongInfo,
 }) {
   const tipP = useRef(null);
   const songInfoP = useRef(null);
@@ -29,9 +27,9 @@ function SongPlayer({
     songInfoP.current.innerHTML = "";
 
     //Update the song state
-    setSong(newSong);
-    setTip(newTip);
-    setSongInfo(newSongInfo);
+    dispatch({ type: "SET_SONG", payload: newSong });
+    dispatch({ type: "SET_TIP", payload: newTip });
+    dispatch({ type: "SET_SONG_INFO", payload: newSongInfo });
     console.log("New Song", newSong);
     //Play the song
     const audioPlayer = document.getElementById("audioPlayer");
@@ -51,7 +49,8 @@ function SongPlayer({
   };
 
   return (
-    <div>
+    <div className="main-page">
+      <h1>Ear Trainer</h1>
       <h2>Song Player</h2>
       <audio src={song} id="audioPlayer" controls>
         Your browser does not support the audio tag.
