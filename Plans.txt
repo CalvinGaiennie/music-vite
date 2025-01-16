@@ -1,0 +1,7 @@
+FrontEnd
+-make it look better. Add some colors.
+maybe change the rudiment photos to a select or to text
+-add a lessons page
+
+BackEnd
+-create a backend that allows users to login create custom workouts track their progress and upload their own ear tracks
