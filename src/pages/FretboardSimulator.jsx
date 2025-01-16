@@ -26,7 +26,7 @@ function FretboardSimulator() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <>
+    <div className="page-container">
       <AppNav />
       <div className="page">
         <FretboardSettings
@@ -39,7 +39,7 @@ function FretboardSimulator() {
         />
         <p>{state.currentKey}</p>
       </div>
-    </>
+    </div>
   );
 }
 

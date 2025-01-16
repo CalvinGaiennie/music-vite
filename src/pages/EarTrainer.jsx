@@ -437,15 +437,17 @@ function EarTrainer() {
   }, [state.difficulty]);
 
   return (
-    <>
+    <div className="page-container">
       <AppNav />
       <div className="page">
-        <EarTrainerSettings
-          dispatch={dispatch}
-          instrument={state.instrument}
-          difficulty={state.difficulty}
-          difficulties={difficulties}
-        />
+        <div className="page-scroll">
+          <EarTrainerSettings
+            dispatch={dispatch}
+            instrument={state.instrument}
+            difficulty={state.difficulty}
+            difficulties={difficulties}
+          />
+        </div>
         <div className="main-page">
           <SongPlayer
             dispatch={dispatch}
@@ -458,7 +460,7 @@ function EarTrainer() {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

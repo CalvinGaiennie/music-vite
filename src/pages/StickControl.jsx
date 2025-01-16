@@ -46,17 +46,19 @@ function StickControl() {
   }, [state.BPM, state.noteType]);
 
   return (
-    <>
+    <div className="page-container">
       <AppNav />
       <div className="page">
-        <MetronomeSettings dispatch={dispatch} />
+        <div className="page-scroll">
+          <MetronomeSettings dispatch={dispatch} />
+        </div>
         <Metronome
           numOfBeats={state.numOfBeats}
           lengthOfBeat={state.lengthOfBeat}
           noteType={state.noteType}
         />
       </div>
-    </>
+    </div>
   );
 }
 

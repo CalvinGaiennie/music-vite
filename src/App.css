@@ -8,11 +8,6 @@ body {
   margin: 0;
 }
 
-.page {
-  display: flex;
-  margin-left: 1rem;
-}
-
 .main-page {
   margin-left: 1rem;
 }
@@ -29,5 +24,26 @@ body {
 }
 
 .main-page {
+  margin-left: 1.5rem;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.page {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
   margin-left: 1rem;
+}
+
+.page-scroll {
+  overflow-y: auto;
+  height: 100%;
 }
