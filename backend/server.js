@@ -2,12 +2,20 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import User from "./models/User.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
+const PORT = process.env.PORT || 10000;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    origin: [
+      "http://localhost:5173",
+      "http://127.0.0.1:5173",
+      "https://cgmusicv2.netlify.app",
+    ],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   })
@@ -59,12 +67,10 @@ app.post("/api/auth/login", async (req, res) => {
 });
 
 mongoose
-  .connect(
-    "mongodb+srv://calvingaiennie:337-Cosmoga12@cluster0.avhja.mongodb.net/music?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => {
     console.log("Connected to MongoDB Atlas database: music");
-    app.listen(5001, () => console.log("Server running on port 5001"));
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })
   .catch((err) => {
     console.error("MongoDB Atlas connection error:", err);

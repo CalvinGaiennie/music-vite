@@ -1,6 +1,10 @@
 import { useState } from "react";
 import AppNav from "../components/AppNav";
 
+const BACKEND_URL = import.meta.env.PROD
+  ? "https://music-vite.onrender.com"
+  : "http://localhost:5001";
+
 function Login() {
   const [formData, setFormData] = useState({
     username: "",
@@ -12,7 +16,7 @@ function Login() {
     e.preventDefault();
     console.log("Attempting to send to database:", formData);
     try {
-      const response = await fetch("http://localhost:5001/api/auth/login", {
+      const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
