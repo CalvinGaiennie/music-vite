@@ -1,37 +1,30 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import AppNav from "../components/AppNav";
 
 function Login() {
   const [formData, setFormData] = useState({
+    username: "",
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Attempting to send to database:", formData);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
+      const response = await fetch("http://localhost:5001/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
         body: JSON.stringify(formData),
       });
-
       const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem("token", data.token);
-        navigate("/");
-      } else {
-        setError(data.message);
-      }
+      console.log(
+        data.success ? "✅ Saved to database" : "❌ Failed to save to database"
+      );
     } catch (error) {
-      setError("Login failed. Please try again.");
+      console.log("❌ Failed to connect to server");
     }
   };
 
@@ -40,7 +33,14 @@ function Login() {
       <AppNav />
       <div className="page">
         <form onSubmit={handleSubmit}>
-          {error && <p className="error">{error}</p>}
+          <input
+            type="text"
+            placeholder="Username"
+            value={formData.username}
+            onChange={(e) =>
+              setFormData({ ...formData, username: e.target.value })
+            }
+          />
           <input
             type="email"
             placeholder="Email"

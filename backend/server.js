@@ -1,51 +1,72 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-import authRoutes from "./routes/auth.js";
-
-dotenv.config();
+import mongoose from "mongoose";
+import User from "./models/User.js";
 
 const app = express();
 
-// CORS configuration with more permissive settings for development
 app.use(
   cors({
-    origin: true, // Allow all origins in development
-    credentials: true,
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 
 app.use(express.json());
 
-// Test route
-app.get("/test", (req, res) => {
-  res.json({ message: "Server is running" });
+app.post("/api/auth/login", async (req, res) => {
+  try {
+    console.log("\n--- New User Data ---");
+    console.log("Database: music");
+    console.log("Collection: users");
+    console.log("Attempting to save:", req.body);
+
+    const { username, email, password } = req.body;
+    const newUser = new User({
+      username,
+      email,
+      password,
+      settings: {
+        fretboardSettings: {
+          currentKey: "empty",
+          currentScale: "note",
+          displayingAllNotes: false,
+        },
+        metronomeSettings: {
+          bpm: 60,
+          noteType: "quarter",
+          numOfMeasures: 4,
+        },
+        earTrainerSettings: {
+          instrument: "Guitar",
+          difficulty: "simple",
+        },
+      },
+    });
+
+    const savedUser = await newUser.save();
+    console.log("✅ Successfully saved to database");
+    console.log("Document ID:", savedUser._id);
+    console.log("-------------------\n");
+    res.status(200).json({ message: "User saved", success: true });
+  } catch (error) {
+    console.log("❌ Failed to save to database");
+    console.error("Error details:", error);
+    console.log("-------------------\n");
+    res.status(500).json({ message: error.message, success: false });
+  }
 });
 
-app.use("/api/auth", authRoutes);
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: "Something went wrong!" });
-});
-
-const PORT = process.env.PORT || 5000;
-
-const server = app
-  .listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log("CORS enabled for all origins");
+mongoose
+  .connect(
+    "mongodb+srv://calvingaiennie:337-Cosmoga12@cluster0.avhja.mongodb.net/music?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    console.log("Connected to MongoDB Atlas database: music");
+    app.listen(5001, () => console.log("Server running on port 5001"));
   })
-  .on("error", (err) => {
-    if (err.code === "EADDRINUSE") {
-      console.log(`Port ${PORT} is busy, trying ${PORT + 1}`);
-      app.listen(PORT + 1);
-    } else {
-      console.error(err);
-    }
+  .catch((err) => {
+    console.error("MongoDB Atlas connection error:", err);
+    process.exit(1);
   });
-
-// Connect to MongoDB
-connectDB().catch(console.error);
