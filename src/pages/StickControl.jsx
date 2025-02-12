@@ -2,6 +2,7 @@ import AppNav from "../components/AppNav";
 import MetronomeSettings from "../components/MetronomeSettings";
 import Metronome from "../components/Metronome";
 import { useEffect, useReducer } from "react";
+import PageTemplate from "../components/PageTemplate";
 
 const initialState = {
   BPM: "90",
@@ -46,20 +47,22 @@ function StickControl() {
   }, [state.BPM, state.noteType]);
 
   return (
-    <div className="page-container">
-      <AppNav />
-      <div className="page">
-        <div className="page-scroll">
-          <MetronomeSettings dispatch={dispatch} />
-        </div>
+    <PageTemplate
+      nav={<AppNav />}
+      settings={<MetronomeSettings dispatch={dispatch} />}
+      mainElement={
         <Metronome
           numOfBeats={state.numOfBeats}
           lengthOfBeat={state.lengthOfBeat}
           noteType={state.noteType}
         />
-      </div>
-    </div>
+      }
+    />
   );
 }
 
 export default StickControl;
+
+{
+  /* <PageTemplate nav={} settings={} mainPage={}/> */
+}

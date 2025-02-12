@@ -2,6 +2,7 @@ import { useState } from "react";
 import AppNav from "../components/AppNav";
 import Lesson from "../components/Lesson";
 import LessonNav from "../components/LessonNav";
+import PageTemplate from "../components/PageTemplate";
 const lessons = {
   Beginner: {
     title: "Beginner",
@@ -63,19 +64,17 @@ function Lessons() {
   const [currLesson, setCurrLesson] = useState(lessons.Beginner);
 
   return (
-    <div className="page-container">
-      <AppNav />
-      <div className="page">
+    <PageTemplate
+      nav={<AppNav />}
+      settings={
         <LessonNav
           currLesson={currLesson}
           setCurrLesson={setCurrLesson}
           lessons={lessons}
         />
-        <div className="page page-scroll">
-          <Lesson currLesson={currLesson} />
-        </div>
-      </div>
-    </div>
+      }
+      mainElement={<Lesson currLesson={currLesson} />}
+    />
   );
 }
 

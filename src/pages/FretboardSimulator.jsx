@@ -2,6 +2,7 @@ import { useReducer } from "react";
 import AppNav from "../components/AppNav";
 import Fretboard from "../components/Fretboard";
 import FretboardSettings from "../components/FretboardSettings";
+import PageTemplate from "../components/PageTemplate";
 
 const initialState = {
   currentKey: "empty",
@@ -26,17 +27,23 @@ function FretboardSimulator() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <div className="page-container">
-      <AppNav />
-      <div className="page">
-        <FretboardSettings
-          dispatch={dispatch}
-          displayingAllNotes={state.displayingAllNotes}
-        />
-        <Fretboard
-          currentScale={state.currentScale}
-          currentKey={state.currentKey}
-        />
+    <div>
+      <PageTemplate
+        nav={<AppNav />}
+        settings={
+          <FretboardSettings
+            dispatch={dispatch}
+            displayingAllNotes={state.displayingAllNotes}
+          />
+        }
+        mainElement={
+          <Fretboard
+            currentScale={state.currentScale}
+            currentKey={state.currentKey}
+          />
+        }
+      />
+      <div>
         <p>{state.currentKey}</p>
       </div>
     </div>

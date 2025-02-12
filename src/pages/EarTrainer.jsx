@@ -2,6 +2,7 @@ import { useEffect, useReducer } from "react";
 import AppNav from "../components/AppNav";
 import EarTrainerSettings from "../components/EarTrainerSettings";
 import SongPlayer from "../components/SongPlayer";
+import PageTemplate from "../components/PageTemplate";
 
 const initialState = {
   song: "/Assets/Songs/ET_1_Simple_Man.mp3",
@@ -437,30 +438,28 @@ function EarTrainer() {
   }, [state.difficulty]);
 
   return (
-    <div className="page-container">
-      <AppNav />
-      <div className="page">
-        <div className="page-scroll">
-          <EarTrainerSettings
-            dispatch={dispatch}
-            instrument={state.instrument}
-            difficulty={state.difficulty}
-            difficulties={difficulties}
-          />
-        </div>
-        <div className="main-page">
-          <SongPlayer
-            dispatch={dispatch}
-            song={state.song}
-            songList={songList}
-            difficulty={state.difficulty}
-            difficultyNumber={state.difficultyNumber}
-            tip={state.tip}
-            songInfo={state.songInfo}
-          />
-        </div>
-      </div>
-    </div>
+    <PageTemplate
+      nav={<AppNav />}
+      settings={
+        <EarTrainerSettings
+          dispatch={dispatch}
+          instrument={state.instrument}
+          difficulty={state.difficulty}
+          difficulties={difficulties}
+        />
+      }
+      mainElement={
+        <SongPlayer
+          dispatch={dispatch}
+          song={state.song}
+          songList={songList}
+          difficulty={state.difficulty}
+          difficultyNumber={state.difficultyNumber}
+          tip={state.tip}
+          songInfo={state.songInfo}
+        />
+      }
+    />
   );
 }
 
