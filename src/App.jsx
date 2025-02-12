@@ -5,6 +5,8 @@ import EarTrainer from "./pages/EarTrainer";
 import StickControl from "./pages/StickControl";
 import Lessons from "./pages/Lessons";
 import Login from "./pages/Login";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 
 function App() {
   return (
