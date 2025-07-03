@@ -1,0 +1,11 @@
+Features
+-change the navigation banner to be see through and to besticy when you scroll
+-Build connect and host a backend.
+remove the side page and fix a better way to implement its features
+
+Bugs and Updates
+-get rid of the direct DOM Manipulation from the display all notes button
+-get the select pattern select to work properly
+-get the lesson page to scroll and consider getting rid of the left side bar
+-Improve margin and padding everywhere
+-rebuild the login page
